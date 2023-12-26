@@ -1,0 +1,56 @@
+
+<html>
+<head>
+<title>Собакены</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<nav>
+  <ul>    
+    <li><a href="главная стр.htm">Главная страница</a></li>
+    <li><a href="порода.htm">Плюсы и минусы пород</a></li>
+    <li><a href="картинки.htm">Задания</a></li>
+    <li><a href="форма.htm">Фреймы</a></li>
+  </ul>
+</nav>
+<div class="shapka">
+<a href="главная стр.htm"><img src="home.jpg" width="40" height="40"></a>
+<h1>Для выполнения заданий</h1>
+</div>
+<p>Анкета, для тех у кого есть корги:</p>
+</br>
+<form>
+    <label for="name">Имя корги:</label>
+    <input type="text" id="name" name="name"><br><br>
+    
+    <label for="age">Возраст корги:</label>
+    <input type="number" id="age" name="age"><br><br>
+    
+    <label for="gender">Пол корги:</label>
+    <input type="radio" id="male" name="gender" value="male">
+    <label for="male">Мужской</label>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Женский</label><br><br>
+    
+    <label for="color">Окрас корги:</label>
+    <select id="color" name="color">
+      <option value="sable">Sable</option>
+      <option value="tri-color">Tri-color</option>
+      <option value="red">Red</option>
+      <option value="fawn">Fawn</option>
+      <option value="black-and-tan">Black and Tan</option>
+    </select><br><br>
+    
+    <label for="temperament">Характер корги:</label>
+    <select id="temperament" name="temperament">
+      <option value="loyal">Преданный</option>
+      <option value="playful">Игривый</option>
+      <option value="intelligent">Умный</option>
+      <option value="affectionate">Ласковый</option>
+      <option value="energetic">Энергичный</option>
+    </select><br><br>
+    
+    <input type="submit" value="Отправить">
+  </form>
+</body>
+</html>
