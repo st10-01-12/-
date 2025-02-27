@@ -1,0 +1,94 @@
+open System
+
+let rec getValidInput () =
+    let rec check part =
+        Console.WriteLine($"Введите {part} часть:")
+        let input = Console.ReadLine()
+        
+        let isValidInput (input: string) =
+            match Int32.TryParse(input) with
+            | (true, _) -> true
+            | (false, _) -> false
+
+        if isValidInput input then
+            int input
+        else
+            Console.WriteLine("Введено недопустимое значение. Попробуйте снова")
+            check part
+
+    let A_real = check "действительную часть первого числа A"
+    let A_imaginary = check "мнимую часть первого числа A"
+    let B_real = check "действительную часть второго числа B"
+    let B_imaginary = check "мнимую часть второго числа B"
+
+    ((A_real, A_imaginary), (B_real, B_imaginary))
+
+let (A, B) = getValidInput()
+Console.WriteLine($"Вы ввели A: {fst A} + {snd A}i, B: {fst B} + {snd B}i")
+
+let add (a: int * int) (b: int * int) =
+    (fst a + fst b, snd a + snd b)
+
+let raznost (a: int * int) (b: int * int) =
+    (fst a - fst b, snd a - snd b)
+
+let multiply (a: int * int) (b: int * int) =
+    (fst a * fst b - snd a * snd b, fst a * snd b + snd a * fst b)
+
+let divide (a: int * int) (b: int * int) =
+    let znam = fst b * fst b + snd b * snd b
+    if znam = 0 then
+        Console.WriteLine("Ошибка: Деление на ноль.")
+        (0, 0)
+    else
+        ((fst a * fst b + snd a * snd b) / znam, (snd a * fst b - fst a * snd b) / znam)
+
+let rec power (basen: int * int) (exponent: int) =
+    if exponent = 0 then (1, 0)
+    else multiply basen (power basen (exponent - 1))
+
+
+let rec Operation (A: int * int) (B: int * int) =
+    Console.WriteLine("Введите желаемую арифметическую операцию знаком: +, -, /, *, ^ или слово exit для выхода")
+    let op = Console.ReadLine()
+
+    if op = "exit" then
+        Console.WriteLine("Выход из программы.")
+    else
+        match op with
+        | "+" ->
+            let sum = add A B
+            Console.WriteLine($"Сумма: {fst sum} + {snd sum}i")
+        | "-" ->
+            let difference = raznost A B
+            Console.WriteLine($"Разность: {fst difference} + {snd difference}i")
+        | "*" ->
+            let umnoj = multiply A B
+            Console.WriteLine($"Произведение: {fst umnoj} + {snd umnoj}i")
+        | "/" ->
+            let delen = divide A B
+            Console.WriteLine($"Частное: {fst delen} + {snd delen}i")
+        | "^" ->
+            Console.WriteLine("Какое число хотите возвести в степень (A или B)?")
+            let choice = Console.ReadLine()
+            Console.WriteLine("Введите степень:")
+            let exponent = Console.ReadLine()
+    
+            if Int32.TryParse(exponent) |> fst then                    
+                let exponent = int exponent
+                if exponent < 0 then                        
+                    Console.WriteLine("Ошибка: Степень должна быть неотрицательной.")
+                else                        
+                    let basen = if choice = "A" then A else B
+                    let result = power basen exponent                        
+                    Console.WriteLine($"{choice} возведенное в степень {exponent}: {fst result} + {snd result}i")
+             else                    
+            Console.WriteLine("Ошибка: Введено недопустимое значение для степени.")
+        | _ -> 
+            Console.WriteLine("Недопустимая операция. Попробуйте снова.")
+
+    if op <> "exit" then
+        Operation A B
+
+
+Operation A B
