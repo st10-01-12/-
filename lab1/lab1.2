@@ -1,0 +1,26 @@
+open System
+
+let rec getValidInput () =
+    Console.WriteLine("Введите целое число")
+    let n = Console.ReadLine()
+
+    let isValidInput (n: string) =
+        match Int32.TryParse(n) with
+        | (true, _) -> true
+        | (false, _) -> false
+
+    if isValidInput n then
+        Console.WriteLine "Вы ввели допустимое значение"
+        int n
+    else
+        Console.WriteLine "Ошибка: Введено недопустимое значение. Попробуйте снова."
+        getValidInput () 
+
+let n = getValidInput()
+
+let rec delit n = 
+    if 10 > n then n
+    else delit (n/10)
+
+let result = delit n
+printfn "Первая цифра число: %d"  result
