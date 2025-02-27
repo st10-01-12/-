@@ -1,0 +1,28 @@
+open System
+
+let rec getValidInput () =
+    Console.WriteLine("Введите последнюю степень числа 2 (целое число)")
+    let n = Console.ReadLine()
+
+    let isValidInput (n: string) =
+        match Int32.TryParse(n) with
+        | (true, _) -> true
+        | (false, _) -> false
+
+    if isValidInput n then
+        Console.WriteLine "Вы ввели допустимое значение"
+        int n
+    else
+        Console.WriteLine "Ошибка: Введено недопустимое значение. Попробуйте снова."
+        getValidInput () 
+
+let n = getValidInput()
+
+let x n =
+    [
+        for i in 1 .. n do
+            yield int(2.**i)
+
+    ]
+
+printf "Результат: %A " (x n)
