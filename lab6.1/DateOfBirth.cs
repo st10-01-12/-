@@ -18,11 +18,11 @@ namespace lab6._1
             this.month = month;
             this.year = year;
         }
-        public DateOfBirth(DateOfBirth sofa)
+        public DateOfBirth(DateOfBirth person)
         {
-            this.day = sofa.day;
-            this.month = sofa.month;
-            this.year = sofa.year;
+            this.day = person.day;
+            this.month = person.month;
+            this.year = person.year;
         }
         public int Day 
         { 
