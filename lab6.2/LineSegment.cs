@@ -6,10 +6,10 @@ namespace lab6._2
         private double start;
         private double end;
 
-        public LineSegment(double x, double y)
+        public LineSegment(double start2, double end2)
         {
-            start = Math.Min(x, y);
-            end = Math.Max(x, y);
+            start = Math.Min(start2, end2);
+            end = Math.Max(start2, end2);
         }
 
         public bool IntoSegment(double number)
