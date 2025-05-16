@@ -117,7 +117,7 @@ namespace lab7
 
             if (numbersinLine <= 0)
             {
-                Console.WriteLine("Ошибка: количество чисел в строке должно быть положительным.");
+                Console.WriteLine("Ошибка: количество чисел в строке должно быть не положительным.");
                 return;
             }
 
@@ -175,9 +175,7 @@ namespace lab7
                             }
                             else
                             {
-                                Console.ForegroundColor = ConsoleColor.Yellow;
                                 Console.WriteLine($"Предупреждение: обнаружена некорректная запись '{part}', пропускается.");
-                                Console.ResetColor();
                             }
                         }
                     }
